@@ -25,7 +25,9 @@ app.get('/info', (request, response) => {
 
 // Get single
 app.get('/api/people/:id', (req, res) => {
-    Person.findById(req.params.id).then(person => res.json(person))
+    Person.findById(req.params.id)
+    .then(person => res.json(person))
+    .catch(error => console.log(`Person with id ${req.params.id} doesn't exist`, error))
 })
 
 // Delete
@@ -39,16 +41,16 @@ app.delete('/api/people/:id', (req, res) => {
 app.post('/api/people', (req, res) => {
     const body = req.body
     
-    if (!body.name || !body.number) {
-        return res.status(400).json({
-            error: 'name or number missing'
-        })
-    } 
-    else if(Person.find({ name: body.name })) {
-        return res.status(400).json({
-            error: 'name must be unique'
-        })
-    }
+    // if (!body.name || !body.number) {
+    //     return res.status(400).json({
+    //         error: 'name or number missing'
+    //     })
+    // } 
+    // else if(Person.find({ name: body.name })) {
+    //     return res.status(400).json({
+    //         error: 'name must be unique'
+    //     })
+    // }
 
     const person = new Person({
         name: body.name,
