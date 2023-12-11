@@ -1,7 +1,7 @@
-POST https://phonebook-backend-qgg9.onrender.com/api/people
+POST http://localhost:3001/api/people
 Content-Type: application/json
 
 {
     "name": "The Dude",
-    "number": "420-1337-69"
+    "number": "1-1233456789"
 }
